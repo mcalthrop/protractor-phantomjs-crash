@@ -9,11 +9,6 @@ How to crash PhantomJS using Protractor
 On a separate project, I've been having some issues where `phantomjs` crashes when run with `protractor` – this project
 shows how to consistently reproduce these crashes.
 
-## Related Issues
-
-* https://github.com/angular/protractor/issues/557
-* https://github.com/detro/ghostdriver/issues/328
-
 ## Setup
 
 ``` sh
@@ -33,16 +28,32 @@ $ node_modules/protractor/bin/webdriver-manager start
 And in another terminal window, run the test specs
 
 ``` sh
-$ node_modules/protractor/bin/protractor protractor.conf.js
+$ ./run_all_tests.bash
 ```
 
-## Results
+## Tests
 
-Executing the above consistently produces a `phantomjs` crash on the following systems:
+There are three sets of tests:
+
+* `specs/async-spec.js` – lots of async calls to `browser.get()`
+* `specs/browser-get-spec.js` - several consecutive calls to `browser.get()`
+* `specs/driver-get-spec.js` - several consecutive calls to `driver.get()`
+
+To keep things simple, all tests try to browse to a [minimal HTML](http://mcalthrop.github.io/minimal.html) page.
+
+## Target systems
+
+The tests listed above have been tried on the following systems:
 
 * Mac OS/X 10.9.2 (Mavericks)
 * Ubuntu Release 12.04
 * Gentoo 64-bit (up to date)
+
+## Results
+
+The `driver.get()` tests all pass on all systems listed.
+
+The async tests and the `browser.get()` tests consistently failed on all systems listed.
 
 In every failure, the cause is `phantomjs` crashing, with an error message that looks like this:
 ```
@@ -56,6 +67,11 @@ If you want the test to run in other browsers, uncomment the relevant lines in t
 In the `phantomjs` definition, there is an alternative `'phantomjs.cli.args'` definition that provides more debugging information.
 
 In `test-spec.js`, you can comment-out any individual test by changing `it` to `xit`.
+
+## Related Issues
+
+* https://github.com/angular/protractor/issues/557
+* https://github.com/detro/ghostdriver/issues/328
 
 ## Troubleshooting
 
