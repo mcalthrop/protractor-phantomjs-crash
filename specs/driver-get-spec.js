@@ -1,5 +1,5 @@
 describe('After repeated calls to driver.get()', function () {
-    var location = 'http://mcalthrop.github.io/minimal.html',
+    var location = 'http://mcalthrop.github.io/angularjs/minimal.html',
         driver = browser.driver,
         numHits = 6;
 
