@@ -11,6 +11,7 @@ shows how to consistently reproduce these crashes.
 
 ## Setup
 
+Clone this repo, then run:
 ``` sh
 $ npm install
 $ node_modules/protractor/bin/webdriver-manager update
