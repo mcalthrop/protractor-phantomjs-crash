@@ -1,0 +1,9 @@
+{
+    "name": "protractor-phantomjs-crash",
+    "version": "0.0.1",
+    "repository": "https://github.com/mcalthrop/protractor-phantomjs-crash",
+    "devDependencies": {
+        "phantomjs": "~1.9",
+        "protractor": "0.20.1"
+    }
+}
